@@ -9,12 +9,7 @@ export default defineConfig({
   },
   build: {
     target: "ES2020",
-    minify: "terser",
-    terserOptions: {
-      compress: {
-        drop_console: true,
-      },
-    },
+    minify: "esbuild",
     rollupOptions: {
       output: {
         manualChunks: {
@@ -23,7 +18,6 @@ export default defineConfig({
         },
       },
     },
-    reportCompressedSize: false,
     cssCodeSplit: true,
   },
   optimizeDeps: {
