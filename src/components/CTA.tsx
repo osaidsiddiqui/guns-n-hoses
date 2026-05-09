@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { Phone } from "lucide-react";
 import { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { PHONE, PHONE_TEL } from "../lib/utils";
 
 const CAROUSEL_IMAGES = [
@@ -25,11 +26,18 @@ export default function CTA() {
 
   return (
     <section className="relative py-24 overflow-hidden">
-      <img
-        src={CAROUSEL_IMAGES[currentImageIndex]}
-        alt="Service background"
-        className="absolute inset-0 w-full h-full object-cover transition-all duration-1000 opacity-60"
-      />
+      <AnimatePresence mode="wait">
+        <motion.img
+          key={currentImageIndex}
+          src={CAROUSEL_IMAGES[currentImageIndex]}
+          alt="Service background"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 0.6 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 1.2 }}
+          className="absolute inset-0 w-full h-full object-cover"
+        />
+      </AnimatePresence>
       <div className="absolute inset-0 bg-gradient-to-br from-black/70 via-black/50 to-black/70" />
       <div className="absolute inset-0 bg-black/40" />
       <div className="absolute -top-20 -left-20 w-96 h-96 rounded-full bg-gold/20 blur-3xl" />
