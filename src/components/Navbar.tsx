@@ -91,7 +91,7 @@ export default function Navbar() {
         <div className="absolute inset-0 bg-black/60" onClick={() => setOpen(false)} />
         <aside
           className={cn(
-            "absolute right-0 top-0 h-full w-[85%] max-w-sm bg-black border-l border-gold/30 shadow-2xl",
+            "absolute right-0 top-0 h-full w-[85%] max-w-sm bg-charcoal/80 border-l border-gold/30 shadow-2xl",
             "flex flex-col p-6 transition-transform duration-300",
             open ? "translate-x-0" : "translate-x-full"
           )}
@@ -102,7 +102,7 @@ export default function Navbar() {
               <X size={28} />
             </button>
           </div>
-          <nav className="flex flex-col bg-charcoal/80 -mx-6 -mt-6 px-6 pt-6 pb-4">
+          <nav className="flex flex-col">
             {links.map((l) => (
               <NavLink
                 key={l.to}
