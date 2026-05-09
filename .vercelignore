@@ -1,0 +1,12 @@
+.git
+.gitignore
+README.md
+.env
+.env.local
+node_modules
+dist
+.vite
+.turbo
+.next
+coverage
+.nyc_output
