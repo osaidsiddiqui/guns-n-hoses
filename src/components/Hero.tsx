@@ -5,7 +5,14 @@ import { Shield, Award, Star, ArrowRight } from "lucide-react";
 export default function Hero() {
   return (
     <section className="relative min-h-[100vh] flex items-center overflow-hidden pt-24">
-      <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=1920&q=80')] bg-cover bg-center" />
+      <video
+        autoPlay
+        muted
+        loop
+        playsInline
+        className="absolute inset-0 w-full h-full object-cover"
+        src="https://videos.pexels.com/video-files/6197563/6197563-sd_640_360_25fps.mp4"
+      />
       <div className="absolute inset-0 bg-gradient-to-br from-black/90 via-black/70 to-black/50" />
       <div className="absolute inset-0 bg-gradient-to-t from-charcoal via-transparent to-transparent" />
 
