@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { Menu, X, Phone } from "lucide-react";
-import logo from "../assets/logo.png";
 import { cn, PHONE, PHONE_TEL } from "../lib/utils";
+
+const logo = "https://cdn.builder.io/api/v1/image/assets%2F8b84be17aad14310b285d25f23a3235d%2Fc2bf693da44b427d999cace915102b8d?format=webp&width=800&height=1200";
 
 const links = [
   { to: "/", label: "Home" },

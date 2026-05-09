@@ -1,4 +1,6 @@
 import { motion } from "framer-motion";
+import { useEffect, useState } from "react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 
 export const SERVICES = [
   { image: "https://cdn.builder.io/api/v1/image/assets%2F8b84be17aad14310b285d25f23a3235d%2F5698c425c5b14ff28bf57c7b61ef4d59?format=webp&width=800&height=1200", title: "House Washing", desc: "Safe and effective exterior cleaning that restores curb appeal." },
@@ -11,6 +13,29 @@ export const SERVICES = [
 ];
 
 export default function Services() {
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentIndex((prev) => (prev + 1) % SERVICES.length);
+    }, 5000);
+    return () => clearInterval(interval);
+  }, []);
+
+  const visibleServices = [
+    SERVICES[currentIndex],
+    SERVICES[(currentIndex + 1) % SERVICES.length],
+    SERVICES[(currentIndex + 2) % SERVICES.length],
+  ];
+
+  const handlePrev = () => {
+    setCurrentIndex((prev) => (prev - 1 + SERVICES.length) % SERVICES.length);
+  };
+
+  const handleNext = () => {
+    setCurrentIndex((prev) => (prev + 1) % SERVICES.length);
+  };
+
   return (
     <section className="py-24 container-px mx-auto">
       <div className="text-center max-w-3xl mx-auto mb-14">
@@ -19,21 +44,55 @@ export default function Services() {
         <p className="text-sand/70 mt-4">Top-to-bottom exterior cleaning for residential and commercial properties.</p>
       </div>
 
-      <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        {SERVICES.map((s, i) => (
-          <motion.div
-            key={s.title}
-            initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }} transition={{ duration: 0.5, delay: i * 0.05 }}
-            className="card p-7 group overflow-hidden"
+      <div className="relative">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {visibleServices.map((s, i) => (
+            <motion.div
+              key={`${currentIndex}-${i}`}
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -30 }}
+              transition={{ duration: 0.5 }}
+              className="card p-7 group overflow-hidden"
+            >
+              <div className="w-full h-40 rounded-lg mb-5 overflow-hidden">
+                <img src={s.image} alt={s.title} className="w-full h-full object-cover group-hover:scale-110 transition duration-300" />
+              </div>
+              <h3 className="h-display text-xl text-sand">{s.title}</h3>
+              <p className="text-sand/65 mt-2 text-sm leading-relaxed">{s.desc}</p>
+            </motion.div>
+          ))}
+        </div>
+
+        {/* Carousel Controls */}
+        <div className="flex items-center justify-center gap-4 mt-8">
+          <button
+            onClick={handlePrev}
+            className="p-2 rounded-full border border-gold/40 text-gold hover:bg-gold hover:text-charcoal transition"
+            aria-label="Previous"
           >
-            <div className="w-full h-40 rounded-lg mb-5 overflow-hidden">
-              <img src={s.image} alt={s.title} className="w-full h-full object-cover group-hover:scale-110 transition duration-300" />
-            </div>
-            <h3 className="h-display text-xl text-sand">{s.title}</h3>
-            <p className="text-sand/65 mt-2 text-sm leading-relaxed">{s.desc}</p>
-          </motion.div>
-        ))}
+            <ChevronLeft size={24} />
+          </button>
+          <div className="flex gap-2">
+            {SERVICES.map((_, i) => (
+              <button
+                key={i}
+                onClick={() => setCurrentIndex(i)}
+                className={`w-2 h-2 rounded-full transition ${
+                  i === currentIndex ? "bg-gold" : "bg-gold/30"
+                }`}
+                aria-label={`Go to service ${i + 1}`}
+              />
+            ))}
+          </div>
+          <button
+            onClick={handleNext}
+            className="p-2 rounded-full border border-gold/40 text-gold hover:bg-gold hover:text-charcoal transition"
+            aria-label="Next"
+          >
+            <ChevronRight size={24} />
+          </button>
+        </div>
       </div>
     </section>
   );

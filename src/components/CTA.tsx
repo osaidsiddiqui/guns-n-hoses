@@ -28,10 +28,10 @@ export default function CTA() {
       <img
         src={CAROUSEL_IMAGES[currentImageIndex]}
         alt="Service background"
-        className="absolute inset-0 w-full h-full object-cover transition-opacity duration-1000"
+        className="absolute inset-0 w-full h-full object-cover transition-all duration-1000 opacity-60"
       />
-      <div className="absolute inset-0 bg-gradient-to-br from-charcoal via-graphite to-black" />
-      <div className="absolute inset-0 bg-black/60" />
+      <div className="absolute inset-0 bg-gradient-to-br from-black/70 via-black/50 to-black/70" />
+      <div className="absolute inset-0 bg-black/40" />
       <div className="absolute -top-20 -left-20 w-96 h-96 rounded-full bg-gold/20 blur-3xl" />
       <div className="absolute -bottom-20 -right-20 w-96 h-96 rounded-full bg-gold/10 blur-3xl" />
 
