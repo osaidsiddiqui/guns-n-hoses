@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { Menu, X, Phone } from "lucide-react";
-import logo from "../assets/logo.png";
 import { cn, PHONE, PHONE_TEL } from "../lib/utils";
+
+const logo = "https://cdn.builder.io/api/v1/image/assets%2F8b84be17aad14310b285d25f23a3235d%2Fc2bf693da44b427d999cace915102b8d?format=webp&width=800&height=1200";
 
 const links = [
   { to: "/", label: "Home" },
@@ -90,7 +91,7 @@ export default function Navbar() {
         <div className="absolute inset-0 bg-black/60" onClick={() => setOpen(false)} />
         <aside
           className={cn(
-            "absolute right-0 top-0 h-full w-[85%] max-w-sm bg-charcoal border-l border-gold/30 shadow-2xl",
+            "absolute right-0 top-0 h-full w-[85%] max-w-sm bg-charcoal/80 border-l border-gold/30 shadow-2xl",
             "flex flex-col p-6 transition-transform duration-300",
             open ? "translate-x-0" : "translate-x-full"
           )}
@@ -101,7 +102,7 @@ export default function Navbar() {
               <X size={28} />
             </button>
           </div>
-          <nav className="flex flex-col gap-2">
+          <nav className="flex flex-col">
             {links.map((l) => (
               <NavLink
                 key={l.to}

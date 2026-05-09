@@ -1,13 +1,45 @@
 import { Link } from "react-router-dom";
 import { Phone } from "lucide-react";
+import { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { PHONE, PHONE_TEL } from "../lib/utils";
 
+const CAROUSEL_IMAGES = [
+  "https://cdn.builder.io/api/v1/image/assets%2F8b84be17aad14310b285d25f23a3235d%2F5698c425c5b14ff28bf57c7b61ef4d59?format=webp&width=800&height=1200",
+  "https://cdn.builder.io/api/v1/image/assets%2F8b84be17aad14310b285d25f23a3235d%2F5c30f5222ea54ec3bc3f2ff56bfa486c?format=webp&width=800&height=1200",
+  "https://cdn.builder.io/api/v1/image/assets%2F8b84be17aad14310b285d25f23a3235d%2F13281b4af40c4439ac7f8f7add6b19f0?format=webp&width=800&height=1200",
+  "https://cdn.builder.io/api/v1/image/assets%2F8b84be17aad14310b285d25f23a3235d%2Fb14c227bf2ba4466bd878a5400e3df88?format=webp&width=800&height=1200",
+  "https://cdn.builder.io/api/v1/image/assets%2F8b84be17aad14310b285d25f23a3235d%2Fdb3e3b48c4f54f75a90c471fce534456?format=webp&width=800&height=1200",
+  "https://cdn.builder.io/api/v1/image/assets%2F8b84be17aad14310b285d25f23a3235d%2F9a81678327984739abd017f1b213110c?format=webp&width=800&height=1200",
+  "https://cdn.builder.io/api/v1/image/assets%2F8b84be17aad14310b285d25f23a3235d%2Fec942d74da2d4d8bb5f00bdfd44b3cc6?format=webp&width=800&height=1200",
+];
+
 export default function CTA() {
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentImageIndex((prev) => (prev + 1) % CAROUSEL_IMAGES.length);
+    }, 4000);
+    return () => clearInterval(interval);
+  }, []);
+
   return (
     <section className="relative py-24 overflow-hidden">
-      <div className="absolute inset-0 bg-gradient-to-br from-charcoal via-graphite to-black" />
-      <div className="absolute inset-0 opacity-30 bg-[url('https://images.unsplash.com/photo-1581578731548-c64695cc6952?auto=format&fit=crop&w=1600&q=80')] bg-cover bg-center" />
-      <div className="absolute inset-0 bg-black/60" />
+      <AnimatePresence mode="wait">
+        <motion.img
+          key={currentImageIndex}
+          src={CAROUSEL_IMAGES[currentImageIndex]}
+          alt="Service background"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 0.6 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 1.2 }}
+          className="absolute inset-0 w-full h-full object-cover"
+        />
+      </AnimatePresence>
+      <div className="absolute inset-0 bg-gradient-to-br from-black/70 via-black/50 to-black/70" />
+      <div className="absolute inset-0 bg-black/40" />
       <div className="absolute -top-20 -left-20 w-96 h-96 rounded-full bg-gold/20 blur-3xl" />
       <div className="absolute -bottom-20 -right-20 w-96 h-96 rounded-full bg-gold/10 blur-3xl" />
 
