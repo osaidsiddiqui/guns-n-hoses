@@ -1,20 +1,19 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { X } from "lucide-react";
+import { SERVICES } from "./Services";
 
 const photos = [
-  { cat: "House Washing", url: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=800&q=80" },
-  { cat: "Roof Cleaning", url: "https://images.unsplash.com/photo-1605146768851-eda79da39897?auto=format&fit=crop&w=800&q=80" },
-  { cat: "Commercial", url: "https://images.unsplash.com/photo-1507089947368-19c1da9775ae?auto=format&fit=crop&w=800&q=80" },
-  { cat: "Residential", url: "https://images.unsplash.com/photo-1568605114967-8130f3a36994?auto=format&fit=crop&w=800&q=80" },
-  { cat: "House Washing", url: "https://images.unsplash.com/photo-1599809275671-b5942cabc7a2?auto=format&fit=crop&w=800&q=80" },
-  { cat: "Graffiti Removal", url: "https://images.unsplash.com/photo-1551038247-3d9af20df552?auto=format&fit=crop&w=800&q=80" },
-  { cat: "Commercial", url: "https://images.unsplash.com/photo-1486325212027-8081e485255e?auto=format&fit=crop&w=800&q=80" },
-  { cat: "Residential", url: "https://images.unsplash.com/photo-1564013799919-ab600027ffc6?auto=format&fit=crop&w=800&q=80" },
-  { cat: "Roof Cleaning", url: "https://images.unsplash.com/photo-1632758840009-89cb98aa42f1?auto=format&fit=crop&w=800&q=80" },
+  { cat: "House Washing", url: "https://cdn.builder.io/api/v1/image/assets%2F8b84be17aad14310b285d25f23a3235d%2F5698c425c5b14ff28bf57c7b61ef4d59?format=webp&width=800&height=1200" },
+  { cat: "Roof Cleaning", url: "https://cdn.builder.io/api/v1/image/assets%2F8b84be17aad14310b285d25f23a3235d%2F5c30f5222ea54ec3bc3f2ff56bfa486c?format=webp&width=800&height=1200" },
+  { cat: "Gutter Cleaning", url: "https://cdn.builder.io/api/v1/image/assets%2F8b84be17aad14310b285d25f23a3235d%2F13281b4af40c4439ac7f8f7add6b19f0?format=webp&width=800&height=1200" },
+  { cat: "Window Cleaning", url: "https://cdn.builder.io/api/v1/image/assets%2F8b84be17aad14310b285d25f23a3235d%2Fb14c227bf2ba4466bd878a5400e3df88?format=webp&width=800&height=1200" },
+  { cat: "Graffiti Removal", url: "https://cdn.builder.io/api/v1/image/assets%2F8b84be17aad14310b285d25f23a3235d%2Fdb3e3b48c4f54f75a90c471fce534456?format=webp&width=800&height=1200" },
+  { cat: "Waste Removal", url: "https://cdn.builder.io/api/v1/image/assets%2F8b84be17aad14310b285d25f23a3235d%2F9a81678327984739abd017f1b213110c?format=webp&width=800&height=1200" },
+  { cat: "Stripping Services", url: "https://cdn.builder.io/api/v1/image/assets%2F8b84be17aad14310b285d25f23a3235d%2Fec942d74da2d4d8bb5f00bdfd44b3cc6?format=webp&width=800&height=1200" },
 ];
 
-const cats = ["All", "House Washing", "Roof Cleaning", "Commercial", "Residential", "Graffiti Removal"];
+const cats = ["All", "House Washing", "Roof Cleaning", "Gutter Cleaning", "Window Cleaning", "Graffiti Removal", "Waste Removal", "Stripping Services"];
 
 export default function Gallery() {
   const [filter, setFilter] = useState("All");
