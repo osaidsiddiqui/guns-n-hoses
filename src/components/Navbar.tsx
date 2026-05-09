@@ -102,7 +102,7 @@ export default function Navbar() {
               <X size={28} />
             </button>
           </div>
-          <nav className="flex flex-col gap-2">
+          <nav className="flex flex-col bg-charcoal/80 -mx-6 -mt-6 px-6 pt-6 pb-4">
             {links.map((l) => (
               <NavLink
                 key={l.to}
